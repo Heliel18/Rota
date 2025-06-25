@@ -1,26 +1,50 @@
 import { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
+import { router } from 'expo-router';
 
-interface ICliente{
-  id: string;
-  nome: string;
-}
 
-export default function Home() {
-  const [cliente, setCliente] = useState<ICliente>();
-  const router = useRouter();
- 
+export default function FormScreen() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [age, setAge] = useState('');
+  
+
+  const handleSubmit = () => {
+
+    router.push({
+      pathname: '/results',
+      params: { name, email, age },
+    });
+  };
 
   return (
-    <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button title="Details Page" onPress={() => {
-        router.push(
-          {pathname:'details',
-            params: {id: '9', nome: 'Heliel'}}
-        );
-      }} />
+    <View style={styles.container}>
+      <Text style={styles.title}>Formulário</Text>
+      
+      <TextInput
+        style={styles.input}
+        placeholder="Nome"
+        value={name}
+        onChangeText={setName}
+      />
+      
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+      />
+      
+      <TextInput
+        style={styles.input}
+        placeholder="Idade"
+        value={age}
+        onChangeText={setAge}
+        keyboardType="numeric"
+      />
+      
+      <Button title="Enviar" onPress={handleSubmit} />
       
     </View>
   );
