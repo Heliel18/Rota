@@ -7,6 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "schema": "rota",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
@@ -24,6 +25,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "dependencies": {
+      "@react-navigation/native": "^6.x",
+      "@react-navigation/stack": "^6.x",
+      "react-native-screens": "~3.x",
+      "react-native-safe-area-context": "3.x"
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
